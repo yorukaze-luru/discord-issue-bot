@@ -42,11 +42,11 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
-        await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(60秒待機)･｢y｣以外の発言をすると停止します。') 
+        await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(10秒待機)すると停止します。') 
         def  issuespam(m):
             return m.content == "y" and m.author == message.author
         try:
-            reply = await client.wait_for( "message" , check = issuespam , timeout = 60 )
+            reply = await client.wait_for( "message" , check = issuespam , timeout = 10.0 )
         except asyncio.TimeoutError:
             await message.channel.send( "中止します。" )
             return
