@@ -123,7 +123,7 @@ async def on_message(message):
         global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
         # global_channelsは issue-global の名前を持つチャンネルのリスト
 
-        embed = discord.Embed(title="issue-global",
+        embed = discord.Embed(title="いしゅー",
             description=message.content, color=0x2ecc71)
 
         embed.set_author(name=message.author.display_name, 
