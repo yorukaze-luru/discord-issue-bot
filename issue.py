@@ -1,12 +1,32 @@
 import discord
 import os
+import asyncio
+from datetime import datetime
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
+CHANNEL_ID = 0
 GLOBAL_CH_NAME = "issue-global"
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
+
+@client.event
+async def on_ready():
+    print(client.user.name)  # ボットの名前
+    print(client.user.id)  # ボットのID
+    print(discord.__version__)  # discord.pyのバージョン
+    print('----------------')
+    print('Hello World,issue_bot started.')
+    channel = client.get_channel(CHANNEL_ID)
+    await channel.purge()
+    await channel.send(f'名前:{client.user.name}')  # ボットの名前
+    await channel.send(f'ID:{client.user.id}')  # ボットのID
+    await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
+    await channel.send('----------------')
+    await channel.send('状態：安定') 
+    await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='創成の女神'))
+    
 
 @client.event
 async def on_message(message):
@@ -14,6 +34,76 @@ async def on_message(message):
     if message.author.bot:
         # もし、送信者がbotなら無視する
         return
+
+    if message.content == "is!help":
+        embed = discord.Embed(title="Hi!!",description="How are you?")
+        await channel.send(embed=embed)
+
+    if message.content == 'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー': 
+        await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。') 
+        def  issuespam(m):
+            return m.content == "y" and m.author == message.author
+        try:
+            reply = await client.wait_for( "message" , check = issuespam , timeout = 60 )
+        except asyncio.TimeoutError:
+            await message.channel.send( "中止します。" )
+            return
+        else:
+            if not reply.content == "y":
+                await message.channel.send( "中止します。" )
+                return
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            await message.channel.send( "いしゅー" )
+            return
+        
 
 #-----------グローバルチャット-----------
     if message.channel.name == GLOBAL_CH_NAME:
