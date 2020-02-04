@@ -36,7 +36,7 @@ async def on_message(message):
         return
 
     if message.content == "is!help":
-        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=00BB00)
+        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/663113701859131410/674175699367755796/BOT.png")
         embed.add_field(name="a",value="b",inline=False)
         await channel.send(embed=embed)
