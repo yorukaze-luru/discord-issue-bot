@@ -35,6 +35,36 @@ async def on_message(message):
         # もし、送信者がbotなら無視する
         return
 
+    #-----------グローバルチャット-----------
+    if message.channel.name == GLOBAL_CH_NAME:
+        # issue-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
+
+        await message.delete() # 元のメッセージは削除しておく
+
+        if 'discord.gg' in message.content:
+            await message.channel.send("ここで招待は送れません。")
+            return # 招待は送れません
+
+        channels = client.get_all_channels()
+        # channelsはbotの取得できるチャンネルのイテレーター
+        global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
+        # global_channelsは issue-global の名前を持つチャンネルのリスト
+
+        embed = discord.Embed(title="いしゅー",
+            description=message.content, color=0x2ecc71)
+
+        embed.set_author(name=message.author.display_name, 
+            icon_url=message.author.avatar_url_as(format="png"))
+        embed.set_footer(text=f"{message.guild.name} / {message.channel.name}",
+            icon_url=message.guild.icon_url_as(format="png"))
+        # Embedインスタンスを生成、投稿者、投稿場所などの設定
+
+        for channel in global_channels:
+            # メッセージを埋め込み形式で転送
+            await channel.send(embed=embed)
+#-----------グローバルチャット-----------
+
+
     if message.content == "is!help":
         embed = discord.Embed(title="Issue bot ヘルプ",description="｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣で反応するよ。\n発言すると覚悟の有無を聞かれるけれど、｢y｣と発言すれば開始するよ。",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
@@ -42,6 +72,9 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
+        if message.channel.name == GLOBAL_CH_NAME:
+            await message.channel.send('ここでは使うことが出来ません。')
+            return
         await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(10秒待機)すると停止します。') 
         def  issuespam(m):
             return m.content == "y" and m.author == message.author
@@ -106,35 +139,4 @@ async def on_message(message):
                 await message.channel.send( "いしゅー" )
                 await message.channel.send( "いしゅー" )
                 
-        
-
-#-----------グローバルチャット-----------
-    if message.channel.name == GLOBAL_CH_NAME:
-        # issue-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
-
-        await message.delete() # 元のメッセージは削除しておく
-
-        if 'discord.gg' in message.content:
-            await message.channel.send("ここで招待は送れません。")
-            return # 招待は送れません
-
-        channels = client.get_all_channels()
-        # channelsはbotの取得できるチャンネルのイテレーター
-        global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
-        # global_channelsは issue-global の名前を持つチャンネルのリスト
-
-        embed = discord.Embed(title="いしゅー",
-            description=message.content, color=0x2ecc71)
-
-        embed.set_author(name=message.author.display_name, 
-            icon_url=message.author.avatar_url_as(format="png"))
-        embed.set_footer(text=f"{message.guild.name} / {message.channel.name}",
-            icon_url=message.guild.icon_url_as(format="png"))
-        # Embedインスタンスを生成、投稿者、投稿場所などの設定
-
-        for channel in global_channels:
-            # メッセージを埋め込み形式で転送
-            await channel.send(embed=embed)
-#-----------グローバルチャット-----------
-
 client.run(TOKEN)
