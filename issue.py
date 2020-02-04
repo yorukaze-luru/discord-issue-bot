@@ -36,13 +36,13 @@ async def on_message(message):
         return
 
     if message.content == "is!help":
-        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ。\n発言すると覚悟の有無を聞かれるけれど、｢y｣と発言すれば開始します。",color=0x2ecc71)
+        embed = discord.Embed(title="Issue bot ヘルプ",description="｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣で反応するよ。\n発言すると覚悟の有無を聞かれるけれど、｢y｣と発言すれば開始するよ。",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
         embed.add_field(name="**issue-global**",value="上記の名前でチャンネルを作ると自動でグローバルチャットに接続されます。",inline=False)
         await message.channel.send(embed=embed)
 
     if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
-        await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。') 
+        await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(60秒待機)･｢y｣以外の発言をすると停止します。') 
         def  issuespam(m):
             return m.content == "y" and m.author == message.author
         try:
