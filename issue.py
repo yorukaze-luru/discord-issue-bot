@@ -119,6 +119,9 @@ async def on_message(message):
             await message.channel.send("ここで招待は送れません。")
             return # 招待は送れません
 
+        if message.content == "is!help":
+            return
+
         channels = client.get_all_channels()
         # channelsはbotの取得できるチャンネルのイテレーター
         global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
