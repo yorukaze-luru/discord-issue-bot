@@ -25,7 +25,7 @@ async def on_ready():
     await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
     await channel.send('----------------')
     await channel.send('状態：安定') 
-    await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ|**is!help**'))
+    await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ| **is!help**'))
     
 
 @client.event
