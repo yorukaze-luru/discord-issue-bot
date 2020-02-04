@@ -41,7 +41,7 @@ async def on_message(message):
         embed.add_field(name="**issue-global**",value="上記の名前でチャンネルを作ると自動でグローバルチャットに接続されます。",inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content == 'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー': 
+    if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
         await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。') 
         def  issuespam(m):
             return m.content == "y" and m.author == message.author
