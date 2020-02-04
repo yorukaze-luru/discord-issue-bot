@@ -5,7 +5,7 @@ from datetime import datetime
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
-CHANNEL_ID = 0
+CHANNEL_ID = 674180325890457610
 GLOBAL_CH_NAME = "issue-global"
 
 # 接続に必要なオブジェクトを生成
