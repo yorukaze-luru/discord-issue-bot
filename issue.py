@@ -25,7 +25,7 @@ async def on_ready():
     await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
     await channel.send('----------------')
     await channel.send('状態：安定') 
-    await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='創成の女神'))
+    await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ|**is!help**'))
     
 
 @client.event
@@ -36,7 +36,9 @@ async def on_message(message):
         return
 
     if message.content == "is!help":
-        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=0xff0000)
+        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=#00BB00)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/663113701859131410/674175699367755796/BOT.png")
+        embed.add_field(name="**issue-global**",value="上記の名前でチャンネルを作るとグローバルチャットが使えるよ")
         await channel.send(embed=embed)
 
     if message.content == 'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー': 
@@ -117,10 +119,8 @@ async def on_message(message):
 
         channels = client.get_all_channels()
         # channelsはbotの取得できるチャンネルのイテレーター
-
-        # embed式
         global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
-        # global_channelsは hoge-global の名前を持つチャンネルのリスト
+        # global_channelsは issue-global の名前を持つチャンネルのリスト
 
         embed = discord.Embed(title="issue-global",
             description=message.content, color=0x00bfff)
