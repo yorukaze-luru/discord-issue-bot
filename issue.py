@@ -36,7 +36,7 @@ async def on_message(message):
         return
 
     if message.content == "is!help":
-        embed = discord.Embed(title="Hi!!",description="How are you?")
+        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=0xff0000)
         await channel.send(embed=embed)
 
     if message.content == 'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー': 
