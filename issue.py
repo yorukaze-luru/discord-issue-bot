@@ -36,9 +36,9 @@ async def on_message(message):
         return
 
     if message.content == "is!help":
-        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ",color=0x2ecc71)
+        embed = discord.Embed(title="Issue bot ヘルプ",description="'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー'で反応するよ。\n発言すると覚悟の有無を聞かれるけれど、｢y｣と発言すれば開始します。",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/663113701859131410/674175699367755796/BOT.png")
-        embed.add_field(name="a",value="b",inline=False)
+        embed.add_field(name="**issue-global**",value="上記の名前でチャンネルを作ると自動でグローバルチャットに接続されます。",inline=False)
         await channel.send(embed=embed)
 
     if message.content == 'い' or 'し' or 'ゅ' or 'ー' or 'いしゅー': 
@@ -123,7 +123,7 @@ async def on_message(message):
         # global_channelsは issue-global の名前を持つチャンネルのリスト
 
         embed = discord.Embed(title="issue-global",
-            description=message.content, color=0x00bfff)
+            description=message.content, color=0x2ecc71)
 
         embed.set_author(name=message.author.display_name, 
             icon_url=message.author.avatar_url_as(format="png"))
