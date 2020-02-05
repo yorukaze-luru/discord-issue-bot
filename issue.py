@@ -6,7 +6,7 @@ from datetime import datetime
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 GLOBAL_CH_NAME = "issue-global"
-ISS_SRART = "issue-stat"
+ISS_SRART = "issue-start"
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
