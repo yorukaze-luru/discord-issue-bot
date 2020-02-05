@@ -23,8 +23,9 @@ async def on_ready():
     global_channels = [ch for ch in channels if ch.name == ISS_SRART]
     # global_channelsは issue-global の名前を持つチャンネルのリスト
     for channel in global_channels:
-        await channel.send(f'>>> **再起動情報** \n 名前:{client.user.name} \n ID:{client.user.id} \n Discord ver:{discord.__version__} \n ---------------- \n 状態：いしゅー')  # ボットの名前
-         
+        date = datetime.now()
+        await channel.send(f'>>> **再起動情報** \n 名前:{client.user.name} \n ID:{client.user.id} \n Discord ver:{discord.__version__} \n ---------------- \n 状態：いしゅー \n \n 再起動時間：{date.hour}時{date.minute}分{date.second}秒')  # ボットの名前
+        
     await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ| is!help'))
     
 
