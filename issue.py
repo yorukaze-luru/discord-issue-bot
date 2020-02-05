@@ -7,6 +7,7 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 CHANNEL_ID = 674180325890457610
 GLOBAL_CH_NAME = "issue-global"
+ISS_SRART = "issue-stat"
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
@@ -18,13 +19,18 @@ async def on_ready():
     print(discord.__version__)  # discord.pyのバージョン
     print('----------------')
     print('Hello World,issue_bot started.')
-    channel = client.get_channel(CHANNEL_ID)
-    await channel.purge()
-    await channel.send(f'名前:{client.user.name}')  # ボットの名前
-    await channel.send(f'ID:{client.user.id}')  # ボットのID
-    await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
-    await channel.send('----------------')
-    await channel.send('状態：安定') 
+    channels = client.get_all_channels()
+    # channelsはbotの取得できるチャンネルのイテレーター
+    global_channels = [ch for ch in channels if ch.name == ISS_SRART]
+    # global_channelsは issue-global の名前を持つチャンネルのリスト
+    for channel in global_channels:
+        # メッセージを埋め込み形式で転送
+        await channel.purge()
+        await channel.send(f'名前:{client.user.name}')  # ボットの名前
+        await channel.send(f'ID:{client.user.id}')  # ボットのID
+        await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
+        await channel.send('----------------')
+        await channel.send('状態：安定') 
     await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ| is!help'))
     
 
@@ -59,56 +65,10 @@ async def on_message(message):
                 await message.channel.send( "中止します。" )
                 return
             elif reply.content == "y":
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
-                await message.channel.send( "いしゅー" )
+                issue_counter =0
+                while issue_counter < 51:
+                    await message.channel.send( "いしゅー" )
+                    issue_counter = issue_counter + 1
 
     #-----------グローバルチャット-----------
     if message.channel.name == GLOBAL_CH_NAME:
