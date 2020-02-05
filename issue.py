@@ -42,6 +42,14 @@ async def on_message(message):
         embed.set_author(name="-----BOT招待URL-----",url="https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot")
         await message.channel.send(embed=embed)
 
+    if message.content == 'テスト':
+        issue_test = 0
+        while issue_test < 25:
+            embed = discord.Embed(title=" ",description=" ")
+            embed.set_image(url="https://cdn.discordapp.com/attachments/674223403313659934/674581603540008970/9QfQXW91k2wAAAAASUVORK5CYII.png")
+            await message.channel.send(embed=embed)
+            issue_test = issue_test + 1
+
     if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
         if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
             await message.channel.send('ここでは使うことが出来ません。')
