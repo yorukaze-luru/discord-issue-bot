@@ -43,6 +43,9 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == 'テスト':
+        if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
+            await message.channel.send('ここでは使うことが出来ません。')
+            return
         issue_test = 0
         while issue_test < 25:
             embed = discord.Embed(title=" ",description=" ")
