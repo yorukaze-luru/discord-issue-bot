@@ -22,7 +22,7 @@ async def on_ready():
     global_channels = [ch for ch in channels if ch.name == ISS_SRART]
     # global_channelsは issue-global の名前を持つチャンネルのリスト
     for channel in global_channels:
-        embed = discord.Embed(title="再起動通知(本体版)",description=" ",color=0x2ecc71)
+        embed = discord.Embed(title="再起動通知(本体版)",description="テスト",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
         embed.add_field(name="BOT名",value=f"{client.user.name}",inline=False)
         embed.add_field(name="ID",value=f"{client.user.id}",inline=False)
