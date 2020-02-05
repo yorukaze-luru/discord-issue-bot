@@ -5,6 +5,7 @@ from datetime import datetime
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
+GLOBAL_CH_NAME = "issue-global"
 ISS_SRART = "issue-start"
 
 # 接続に必要なオブジェクトを生成
@@ -42,7 +43,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
-        if message.channel.name == GLOBAL_CH_NAME:
+        if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
             await message.channel.send('ここでは使うことが出来ません。')
             return
         await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(10秒待機)すると停止します。') 
