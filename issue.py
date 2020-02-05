@@ -5,7 +5,6 @@ from datetime import datetime
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
-CHANNEL_ID = 674180325890457610
 GLOBAL_CH_NAME = "issue-global"
 ISS_SRART = "issue-stat"
 
