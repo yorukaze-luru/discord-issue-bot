@@ -22,20 +22,8 @@ async def on_ready():
     global_channels = [ch for ch in channels if ch.name == ISS_SRART]
     # global_channelsは issue-global の名前を持つチャンネルのリスト
     for channel in global_channels:
-        embed = discord.Embed(title="再起動通知(本体版)",description="テスト",color=0x2ecc71)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
-        embed.add_field(name="BOT名",value=f"{client.user.name}",inline=False)
-        embed.add_field(name="ID",value=f"{client.user.id}",inline=False)
-        embed.add_field(name="Discord ver",value=f"{discord.__version__}",inline=False)
-        embed.add_field(name="----------------",value=" ",inline=False)
-        embed.add_field(name="状態",value="再起動しました。",inline=False)
-        await channel.send(embed=embed)
-
-        await channel.send(f'名前:{client.user.name}')  # ボットの名前
-        await channel.send(f'ID:{client.user.id}')  # ボットのID
-        await channel.send(f'Discord ver:{discord.__version__}')  # discord.pyのバージョン
-        await channel.send('----------------')
-        await channel.send('状態：安定') 
+        await channel.send(f'>>> **再起動情報** \n 名前:{client.user.name} \n ID:{client.user.id} \n Discord ver:{discord.__version__} \n ---------------- \n 状態：いしゅー')  # ボットの名前
+         
     await client.change_presence(status=discord.Status.idle,activity=discord.Game(name='ヘルプ| is!help'))
     
 
