@@ -53,15 +53,41 @@ class TestCog(commands.Cog):
 
     @commands.group(aliases=['h'])
     async def help(self, ctx):
-        embed = discord.Embed(title=f"{self.bot.user}", description="このBotの情報です")
-        embed.set_thumbnail(url=self.bot.user.avatar_url)
-        embed.add_field(name="SERVERの数", value=f'`{len(self.bot.guilds)}`',inline=False)
-        embed.add_field(name="USERの数", value=f'`{len(set(self.bot.get_all_members()))}`',inline=False)
-        embed.add_field(name="言語", value='`discord.py`\n`discord.js`',inline=False)
-        embed.add_field(name="Ping値", value=f'`{self.bot.ws.latency * 1000:.0f}ms`',inline=False)
-        embed.add_field(name="各種リンク", value="[このBOTの公式開発鯖](<https://discord.gg/ENxnsJM>)", inline=False)
+        if ctx.invoked_subcommand is None:
+            issuep = discord.Embed(title="Issue bot ヘルプ",description="その他ヘルプは`help 各ヘルプコマンド`",color=0x2ecc71)
+            issuep.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
+            issuep.add_field(name="**Global Chat**",value="`globalchat (省略はgc)`")
+            issuep.add_field(name="**いしゅースパム**",value="`issue (省略はis)`")
+            issuep.add_field(name="**各種リンク**", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot>)", inline=False)  
+            await ctx.channel.send(embed=issuep)
+            embed = discord.Embed(title=f"{self.bot.user}", description="このBotの情報です",color=0x2ecc71)
+            embed.set_thumbnail(url=self.bot.user.avatar_url)
+            embed.add_field(name="SERVERの数", value=f'`{len(self.bot.guilds)}`',inline=False)
+            embed.add_field(name="USERの数", value=f'`{len(set(self.bot.get_all_members()))}`',inline=False)
+            embed.add_field(name="言語", value='`discord.py`\n`discord.js`',inline=False)
+            embed.add_field(name="Ping値", value=f'`{self.bot.ws.latency * 1000:.0f}ms`',inline=False)
+            await ctx.channel.send(embed=embed)
+
+    @help.command(aliases=['gc'])
+    async def globalchat(self, ctx):
+        embed = discord.Embed(title=f"help globalchat", description="Global Chatについてのヘルプです。",color=0x2ecc71)
+        embed.add_field(name="**issue-global**", value=f'上記の名前でチャンネルを作ると自動でグローバルチャットに接続されます。',inline=False)
         await ctx.channel.send(embed=embed)
-            
+
+    @help.command(aliases=['is'])
+    async def issue(self, ctx):
+        embed = discord.Embed(title=f"help issue", description="いしゅースパムについてのヘルプです。",color=0x2ecc71)
+        embed.add_field(name="**説明**", value=f'開始コマンドを入力。\n開始するかどうか聞かれるので、｢y｣を入力。\nそうすれば開始されます。\n⚠️｢issue-start｣や｢issue-global｣では使えません')
+        embed.add_field(name="**開始コマンド**", value=f'｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣のうちどれか一つ')
+        await ctx.channel.send(embed=embed)
+
+    @help.command(aliases=['gl'])
+    async def guild_list(self, ctx):
+        guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
+        for g in self.bot.guilds:
+            guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
+        await ctx.channel.send(embed=guildlist)
+
     #gbans a user with a reason
     @commands.command()
     async def gban(self, ctx, user_id: int=None, reason =None):
@@ -89,38 +115,7 @@ class TestCog(commands.Cog):
             await ctx.channel.send(f"{g}からのUNBANが完了しました。")
             if g == None:
                 await self.bot.logout()
-        
-    # メインとなるroleコマンド
-    @commands.group()
-    @commands.has_permissions(manage_roles=True)
-    async def role(self, ctx):
-        # サブコマンドが指定されていない場合、メッセージを送信する。
-        if ctx.invoked_subcommand is None:
-            await ctx.send('このコマンドにはサブコマンドが必要です。')
 
-    # roleコマンドのサブコマンド
-    # 指定したユーザーに指定した役職を付与する。
-    @role.command(aliases=['ad'])
-    async def add(self, ctx, member: discord.Member, role: discord.Role):
-        await member.add_roles(role)
-        await ctx.send('付与しました。')
-
-    # roleコマンドのサブコマンド
-    # 指定したユーザーから指定した役職を剥奪する。
-    @role.command(aliases=['rm'])
-    async def remove(self, ctx, member: discord.Member, role: discord.Role):
-        await member.remove_roles(role)
-        await ctx.send('剥奪しました。')
-
-    # roleコマンドのサブコマンド
-    # 指定したユーザーに指定した役職を付与する。
-    @role.command(aliases=['cr'])
-    async def create(self, ctx, what):
-        guild = ctx.guild
-        set_name2 = f"{what}"
-        await guild.create_role(name=set_name2)
-        await ctx.send(f'作成しました。@' + set_name2)
-        
     @commands.Cog.listener()
     @commands.has_permissions(manage_guild=True)
     async def on_message(self, message):
