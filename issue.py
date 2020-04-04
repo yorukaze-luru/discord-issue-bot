@@ -20,9 +20,7 @@ async def on_ready():
     print('Hello World,issue_bot started.')
     channels = client.get_all_channels()
     # channelsはbotの取得できるチャンネルのイテレーター
-    global_channels = [ch for ch in channels if ch.name == ISS_SRART]
-    # global_channelsは issue-global の名前を持つチャンネルのリスト
-    for channel in global_channels:
+    if channel.name == "ISS_SRART":
         date = datetime.now()
         await channel.send(f'>>> **再起動情報** \n 名前:{client.user.name} \n ID:{client.user.id} \n Discord ver:{discord.__version__} \n ------------------------------- \n 状態：いしゅー \n \n 再起動時間：{date.year}年{date.month}月{date.day}日{date.hour}時{date.minute}分{date.second}秒')  # ボットの名前
         
@@ -39,7 +37,7 @@ async def on_message(message):
         embed = discord.Embed(title="Issue bot ヘルプ",description="｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣で反応するよ。\n発言すると覚悟の有無を聞かれるけれど、｢y｣と発言すれば開始するよ。",color=0x2ecc71)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
         embed.add_field(name="**issue-global**",value="上記の名前でチャンネルを作ると自動でグローバルチャットに接続されます。",inline=False)
-        embed.add_field(name="各種リンク", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot>)", inline=False)  
+        embed.add_field(name="**各種リンク**", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot>)", inline=False)  
         await message.channel.send(embed=embed)
 
     if message.content == 'テスト':
