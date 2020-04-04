@@ -58,6 +58,7 @@ class TestCog(commands.Cog):
         if ctx.invoked_subcommand is None:
             issuep = discord.Embed(title="Issue bot ヘルプ",description="その他ヘルプは`help 各ヘルプコマンド`",color=0x2ecc71)
             issuep.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
+            issuep.add_field(name="**command prefix**",value="`is!`")
             issuep.add_field(name="**Global Chat**",value="`globalchat (省略はgc)`")
             issuep.add_field(name="**いしゅースパム**",value="`issue (省略はis)`")
             issuep.add_field(name="**各種リンク**", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot>)", inline=False)  
