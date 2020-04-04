@@ -1,6 +1,7 @@
 from discord.ext import commands, tasks # Bot Commands Frameworkをインポート
 import traceback # エラー表示のためにインポート
 import os
+import discord
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
