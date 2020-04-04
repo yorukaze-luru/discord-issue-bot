@@ -86,10 +86,11 @@ class TestCog(commands.Cog):
 
     @help.group(aliases=['gl'])
     async def guild_list(self, ctx):
-        guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
-        for g in self.bot.guilds:
-            guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
-        await ctx.channel.send(embed=guildlist)
+        if ctx.invoked_subcommand is None:
+            guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
+            for g in self.bot.guilds:
+                guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
+            await ctx.channel.send(embed=guildlist)
 
     @guild_list.command(aliases=['gll'])
     async def global_list(self, ctx):
