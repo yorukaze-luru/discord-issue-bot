@@ -5,6 +5,8 @@ import random
 import datetime
 
 great_owner_id = 459936557432963103
+GLOBAL_CH_NAME = "issue-global"
+ISS_SRART = "issue-start"
 
 # コグとして用いるクラスを定義。
 class TestCog(commands.Cog):
@@ -121,6 +123,39 @@ class TestCog(commands.Cog):
     async def on_message(self, message):
         if message.author.bot:
             return
+        if message.content == 'pissue':
+            if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
+                await message.channel.send('ここでは使うことが出来ません。')
+                return
+            issue_test = 0
+            while issue_test < 25:
+                embed = discord.Embed(title=" ",description=" ")
+                embed.set_image(url="https://cdn.discordapp.com/attachments/674223403313659934/674581603540008970/9QfQXW91k2wAAAAASUVORK5CYII.png")
+                await message.channel.send(embed=embed)
+                issue_test = issue_test + 1
+
+        if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
+            if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
+                await message.channel.send('ここでは使うことが出来ません。')
+                return
+            await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(10秒待機)すると停止します。') 
+            def  issuespam(m):
+                return m.content == "y" and m.author == message.author
+            try:
+                reply = await client.wait_for( "message" , check = issuespam , timeout = 10.0 )
+            except asyncio.TimeoutError:
+                await message.channel.send( "中止します。" )
+                return
+            else:
+                if not reply.content == "y":
+                    await message.channel.send( "中止します。" )
+                    return
+                elif reply.content == "y":
+                    issue_counter =0
+                    while issue_counter < 51:
+                        await message.channel.send( "いしゅー" )
+                        issue_counter = issue_counter + 1
+
         if message.author.id != great_owner_id:
             return
         if message.content == 'ログ削除して':
