@@ -1,7 +1,6 @@
 from discord.ext import commands, tasks # Bot Commands Frameworkをインポート
 import traceback # エラー表示のためにインポート
 import os
-import discord
 
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
@@ -28,20 +27,13 @@ class MyBot(commands.Bot):
 
     # Botの準備完了時に呼び出されるイベント
     async def on_ready(self):
-        print(self.user.name)  # ボットの名前
-        print(self.user.id)  # ボットのID
-        print(discord.__version__)  # discord.pyのバージョン
-        print('----------------')
-        print('いしゅー')
-        channel = self.get_channel(674180325890457610)
-        await channel.send(self.user.name)  # ボットの名前
-        await channel.send(self.user.id)  # ボットのID
-        await channel.send(discord.__version__)  # discord.pyのバージョン
-        await channel.send('----------------')
-        await channel.send('いしゅー')
-        await self.change_presence(activity=discord.Game(name=f'ヘルプ|is!help')) 
+        print('-----')
+        print(self.user.name)
+        print(self.user.id)
+        print('-----')
 
-#MyBotのインスタンス化及び起動処理。
+
+# MyBotのインスタンス化及び起動処理。
 if __name__ == '__main__':
     bot = MyBot(command_prefix='is!') # command_prefixはコマンドの最初の文字として使うもの。 e.g. !ping
     bot.run(TOKEN) # Botのトークン
