@@ -20,7 +20,7 @@ async def on_ready():
     print('Hello World,issue_bot started.')
     channels = client.get_all_channels()
     # channelsはbotの取得できるチャンネルのイテレーター
-    if channel.name == "ISS_SRART":
+    if client.channel.name == "ISS_SRART":
         date = datetime.now()
         await channel.send(f'>>> **再起動情報** \n 名前:{client.user.name} \n ID:{client.user.id} \n Discord ver:{discord.__version__} \n ------------------------------- \n 状態：いしゅー \n \n 再起動時間：{date.year}年{date.month}月{date.day}日{date.hour}時{date.minute}分{date.second}秒')  # ボットの名前
         
