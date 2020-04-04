@@ -84,10 +84,17 @@ class TestCog(commands.Cog):
         embed.add_field(name="**開始コマンド**", value=f'｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣のうちどれか一つ')
         await ctx.channel.send(embed=embed)
 
-    @help.command(aliases=['gl'])
+    @help.group(aliases=['gl'])
     async def guild_list(self, ctx):
         guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
         for g in self.bot.guilds:
+            guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
+        await ctx.channel.send(embed=guildlist)
+
+    @guild_list.command(aliases=['gc'])
+    async def globalchat(self, ctx):
+        guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
+        g for g in self.bot.guilds if discord.utils.get(g.channels,name="指定の名前")
             guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
         await ctx.channel.send(embed=guildlist)
 
