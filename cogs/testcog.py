@@ -55,6 +55,9 @@ class TestCog(commands.Cog):
 
     @commands.group(aliases=['h'])
     async def help(self, ctx):
+        if ctx.channel.name == GLOBAL_CH_NAME or ctx.channel.name == ISS_SRART:
+                await ctx.channel.send('ここでは使うことが出来ません。')
+                return
         if ctx.invoked_subcommand is None:
             issuep = discord.Embed(title="Issue bot ヘルプ",description="その他ヘルプは`help 各ヘルプコマンド`",color=0x2ecc71)
             issuep.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
