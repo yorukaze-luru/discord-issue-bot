@@ -33,7 +33,7 @@ class MyBot(commands.Bot):
         print(discord.__version__)  # discord.pyのバージョン
         print('----------------')
         print('いしゅー')
-        channel = self.get_channel(694452244635975691)
+        channel = self.get_channel(674180325890457610)
         await channel.send(self.user.name)  # ボットの名前
         await channel.send(self.user.id)  # ボットのID
         await channel.send(discord.__version__)  # discord.pyのバージョン
