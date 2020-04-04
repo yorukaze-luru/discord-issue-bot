@@ -61,7 +61,7 @@ class TestCog(commands.Cog):
             issuep.add_field(name="**command prefix**",value="`is!`")
             issuep.add_field(name="**Global Chat**",value="`globalchat (省略はgc)`")
             issuep.add_field(name="**いしゅースパム**",value="`issue (省略はis)`")
-            issuep.add_field(name="**各種リンク**", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=1812987088&scope=bot>)", inline=False)  
+            issuep.add_field(name="**各種リンク**", value="[BOT招待URL](<https://discordapp.com/api/oauth2/authorize?client_id=674176006801850369&permissions=8&scope=bot>)", inline=False)  
             await ctx.channel.send(embed=issuep)
             embed = discord.Embed(title=f"{self.bot.user}", description="このBotの情報です",color=0x2ecc71)
             embed.set_thumbnail(url=self.bot.user.avatar_url)
