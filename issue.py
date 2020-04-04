@@ -32,9 +32,9 @@ class MyBot(commands.Bot):
         print(self.user.name)
         print(self.user.id)
         print('-----')
-        if self.channel.name="issue-start":
-            embed = discord.Embed(title="起動ログ",description="いしゅー")
-            await channel_l.send(embed=embed)
+        channel_l = self.get_channel(695971238295765053)
+        embed = discord.Embed(title="起動ログ",description="いしゅー")
+        await channel_l.send(embed=embed)
 
 # MyBotのインスタンス化及び起動処理。
 if __name__ == '__main__':
