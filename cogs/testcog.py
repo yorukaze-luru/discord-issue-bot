@@ -94,7 +94,7 @@ class TestCog(commands.Cog):
     @guild_list.command(aliases=['gll'])
     async def global_list(self, ctx):
         guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です",color=0x2ecc71)
-        g for g in self.bot.guilds if discord.utils.get(g.channels,name="指定の名前")
+        g for g in self.bot.guilds if discord.utils.get(g.channels,name="issue-global"):
             guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
         await ctx.channel.send(embed=guildlist)
 
