@@ -33,7 +33,7 @@ class MyBot(commands.Bot):
         print(self.user.id)
         print('-----')
         channel_l = self.get_channel(695971238295765053)
-        embed = discord.Embed(title="起動ログ",description="いしゅー",color=0x2ecc71)
+        embed = discord.Embed(title="**起動ログ**",description="いしゅー",color=0x2ecc71)
         await channel_l.send(embed=embed)
 
 # MyBotのインスタンス化及び起動処理。
