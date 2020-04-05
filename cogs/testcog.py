@@ -156,13 +156,13 @@ class TestCog(commands.Cog):
             def  issuespam(m):
                 return m.content == "y" and m.author == message.author
             try:
-                reply = await client.wait_for( "message" , check = issuespam , timeout = 10.0 )
+                reply = await self.bot.wait_for( "message" , check = issuespam , timeout = 10.0 )
             except asyncio.TimeoutError:
-                await message.channel.send( "中止します。" )
+                await message.channel.send( "中止します。(type:time over)" )
                 return
             else:
                 if not reply.content == "y":
-                    await message.channel.send( "中止します。" )
+                    await message.channel.send( "中止します。(type:None content)" )
                     return
                 elif reply.content == "y":
                     issue_counter =0
