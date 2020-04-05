@@ -84,7 +84,7 @@ class TestCog(commands.Cog):
     async def issue(self, ctx):
         embed = discord.Embed(title=f"help issue", description="いしゅースパムについてのヘルプです。",color=0x2ecc71)
         embed.add_field(name="**説明**", value=f'開始コマンドを入力。\n開始するかどうか聞かれるので、｢y｣を入力。\nそうすれば開始されます。\n⚠️｢issue-start｣や｢issue-global｣では使えません')
-        embed.add_field(name="**開始コマンド**", value=f'｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣のうちどれか一つ')
+        embed.add_field(name="**開始コマンド**", value=f'｢い｣｢し｣｢ゅ｣｢ー｣｢いしゅー｣｢issue｣のうちどれか一つ\n※｢issue｣は画像が送信されます。')
         await ctx.channel.send(embed=embed)
 
     @help.group(aliases=['gl'])
@@ -155,18 +155,7 @@ class TestCog(commands.Cog):
     async def on_message(self, message):
         if message.author.bot:
             return
-        if message.content == 'pissue':
-            if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
-                await message.channel.send('ここでは使うことが出来ません。')
-                return
-            issue_test = 0
-            while issue_test < 25:
-                embed = discord.Embed(title=" ",description=" ")
-                embed.set_image(url="https://cdn.discordapp.com/attachments/674223403313659934/674581603540008970/9QfQXW91k2wAAAAASUVORK5CYII.png")
-                await message.channel.send(embed=embed)
-                issue_test = issue_test + 1
-
-        if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー': 
+        if message.content == 'い' or message.content == 'し' or message.content == 'ゅ' or message.content == 'ー' or message.content == 'いしゅー' or message.content == 'issue':
             if message.channel.name == GLOBAL_CH_NAME or message.channel.name == ISS_SRART:
                 await message.channel.send('ここでは使うことが出来ません。')
                 return
@@ -183,10 +172,19 @@ class TestCog(commands.Cog):
                     await message.channel.send( "中止します。(type:None content)" )
                     return
                 elif reply.content == "y":
-                    issue_counter =0
-                    while issue_counter < 51:
-                        await message.channel.send( "いしゅー" )
-                        issue_counter = issue_counter + 1
+                    if message.content == 'issue':
+                        issue_test = 0
+                        while issue_test < 25:
+                            embed = discord.Embed(title="いしゅー",description="いしゅー")
+                            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/670982490999226370/674193654344056842/Screenmemo_2020-02-04-18-00-12.png")
+                            embed.set_image(url="https://cdn.discordapp.com/attachments/674223403313659934/674581603540008970/9QfQXW91k2wAAAAASUVORK5CYII.png")
+                            await message.channel.send(embed=embed)
+                            issue_test = issue_test + 1
+                    else:
+                        issue_counter =0
+                        while issue_counter < 51:
+                            await message.channel.send( "いしゅー" )
+                            issue_counter = issue_counter + 1
 
         if message.author.id != great_owner_id:
             return
