@@ -104,6 +104,24 @@ class TestCog(commands.Cog):
                 guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
         await ctx.channel.send(embed=guildlist)
 
+    @guild_list.command(aliases=['sl'])
+    async def start_list(self, ctx):
+        guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です(StartLog導入)",color=0x2ecc71)
+        for g in self.bot.guilds:
+            channel_l = discord.utils.get(g.channels, name=ISS_SRART)
+            if channel_l != None:
+                guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
+        await ctx.channel.send(embed=guildlist)
+
+    @guild_list.command(aliases=['ol'])
+    async def osirase_list(self, ctx):
+        guildlist = discord.Embed(title=f"Guild List", description="導入鯖名簿です(おしらせ導入)",color=0x2ecc71)
+        for g in self.bot.guilds:
+            channel_l = discord.utils.get(g.channels, name="issue-おしらせ")
+            if channel_l != None:
+                guildlist.add_field(name=f"**{g}**", value=f'{g.id}')
+        await ctx.channel.send(embed=guildlist)
+
     #gbans a user with a reason
     @commands.command()
     async def gban(self, ctx, user_id: int=None, reason =None):
