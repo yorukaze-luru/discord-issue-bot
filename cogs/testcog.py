@@ -172,7 +172,8 @@ class TestCog(commands.Cog):
                     await message.channel.send( "中止します。(type:None content)" )
                     return
                 elif reply.content == "y":
-                    if replay.channel != message.channel:
+                    if reply.content.channel != message.channel:
+                        await message.channel.send( "中止します。(type:None content)" )
                         return
                     if message.content == 'issue':
                         issue_test = 0
