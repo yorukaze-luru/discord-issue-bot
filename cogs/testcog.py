@@ -161,7 +161,7 @@ class TestCog(commands.Cog):
                 return
             await message.channel.send('この後｢いしゅー｣が50回スパムされます。\n覚悟があるなら、｢y｣と発言してください。\n何も発言しない(10秒待機)すると停止します。') 
             def  issuespam(m):
-                return m.content == "y" and m.author == message.author
+                return m.content == "y" and m.author == message.author and m.channel == channel
             try:
                 reply = await self.bot.wait_for( "message" , check = issuespam , timeout = 10.0 )
             except asyncio.TimeoutError:
@@ -172,9 +172,7 @@ class TestCog(commands.Cog):
                     await message.channel.send( "中止します。(type:None content)" )
                     return
                 elif reply.content == "y":
-                    if m.channel != message.channel:
-                        await message.channel.send( "中止します。(type:None content)" )
-                        return
+                    
                     if message.content == 'issue':
                         issue_test = 0
                         while issue_test < 25:
